@@ -1,0 +1,15 @@
+class Solution{
+    static int evenlyDivides(int N){
+        // code here
+        int count=0;
+        int temp=N;
+        while(N>0){
+            int t=N%10;
+            if(t!=0 && temp%t==0){
+                count++;
+            }
+            N=N/10;
+        }
+        return count;
+    }
+}

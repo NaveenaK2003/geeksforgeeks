@@ -1,0 +1,14 @@
+class Solution
+{
+    public long reverse_digit(long n)
+    {
+        // Code here
+        long reverse=0;
+        while(n>0){
+            long t=n%10;
+            reverse=reverse*10+t;
+            n=n/10;
+        }
+        return reverse;
+    }
+}

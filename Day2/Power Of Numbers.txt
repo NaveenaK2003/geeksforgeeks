@@ -1,0 +1,18 @@
+class Solution
+{
+    long mod=1000000007;
+    long power(int N,int R)
+    {
+        //Your code here
+        if(R==0)
+        return 1;
+        if(R==1)
+        return N;
+        long value=power(N,R/2)%mod;
+        value=(value*value)%mod;
+        if(R%2==1)
+        value=(value*N)%mod;
+        return value;
+    }
+
+}
