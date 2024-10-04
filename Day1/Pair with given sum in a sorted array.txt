@@ -1,0 +1,75 @@
+Using Map
+
+class Solution {
+
+    int countPair(int k, int arr[]) {
+        // Complete the function
+        int res=0;
+        Map<Integer,Integer> map=new HashMap<>();
+        for(int i=0;i<arr.length;i++){
+            int complement=k-arr[i];
+            if(map.getOrDefault(complement,0)==arr[i]){
+                if(map.getOrDefault(complement,0)==1)
+                res++;
+            }
+            else if(map.getOrDefault(complement,0)>0 && map.getOrDefault(arr[i],0)==0)
+            res++;
+            map.put(arr[i],map.getOrDefault(arr[i],0)+1);
+        }
+         return res;
+    }
+}
+
+
+Using Two Pointer Approach
+
+
+Arrays.sort(arr);
+int res=0;
+        int left=0;
+        int right=arr.length-1;
+        while(left<right){
+            if(arr[left]+arr[right]==k){
+                res++;
+            }
+            while(left<right && arr[left]==arr[left+1])
+            left++;
+            while(left<right && arr[right]==arr[right-1])
+            right--;
+            left++;
+            right--;
+        }
+        return res;
+    }
+}
+
+
+Brute Force Approach
+
+
+class Solution {
+
+    int countPair(int k, int arr[]) {
+        // Complete the function
+        int n=arr.length;
+        ArrayList<int[]> res=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(arr[i]+arr[j]==k){
+                    int[] cur={arr[i],arr[j]};
+                    Arrays.sort(cur);
+                    boolean visited=true;
+                    for(int[] pre:res){
+                         if(Arrays.equals(cur,pre)){
+                            visited=false;
+                            break;
+                        }
+                    }
+                if(visited)
+                res.add(cur);
+                }
+            }
+        }
+        return res.size();
+        }
+}
