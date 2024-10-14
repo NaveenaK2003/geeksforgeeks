@@ -1,0 +1,54 @@
+Next Permutation
+Difficulty: MediumAccuracy: 40.66%Submissions: 136K+Points: 4
+Implement the next permutation, which rearranges the list of numbers into Lexicographically next greater permutation of the list of numbers. If such an arrangement is not possible, it must be rearranged to the lowest possible order i.e. sorted in ascending order. You are given a list of numbers arr[ ].
+
+Examples:
+
+Input: arr = [1, 2, 3, 6, 5, 4]
+Output: [1, 2, 4, 3, 5, 6]
+Explaination: The next permutation of the given array is {1, 2, 4, 3, 5, 6}.
+
+
+
+
+Solution:
+
+class Solution {
+    public static void reverse(int[] arr,int i){
+        int l=i;
+        int r=arr.length-1;
+        while(l<r){
+            int temp=arr[l];
+            arr[l]=arr[r];
+            arr[r]=temp;
+            l++;
+            r--;
+        }
+    }
+    void nextPermutation(int[] arr) {
+        // code here
+        
+        
+        int index=-1;
+        for(int i=arr.length-2;i>=0;i--){
+            if(arr[i]<arr[i+1]){
+                index=i;
+                break;
+            }
+        }
+        if(index==-1){
+            reverse(arr,0);
+        }
+        else{
+         for(int i=arr.length-1;i>index;i--){
+             if(arr[index]<arr[i]){
+                 int temp=arr[i];
+                 arr[i]=arr[index];
+                 arr[index]=temp;
+                 break;
+             }
+         }   
+         reverse(arr,index+1);
+        }
+    }
+}

@@ -1,0 +1,30 @@
+Given an integer array arr[]. You need to find and return the maximum sum possible from all the subarrays.
+
+Examples:
+
+Input: arr[] = [1, 2, 3, -2, 5]
+Output: 9
+Explanation: Max subarray sum is 9 of elements (1, 2, 3, -2, 5).
+
+
+Solution:
+
+class Solution {
+
+    // arr: input array
+    // Function to find the sum of contiguous subarray with maximum sum.
+    int maxSubarraySum(int[] arr) {
+
+        // Your code here
+        int sum=0;
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+            if(sum>max)
+            max=sum;
+            if(sum<0)
+            sum=0;
+        }
+        return max;
+    }
+}
